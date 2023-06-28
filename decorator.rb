@@ -3,6 +3,7 @@ require_relative 'person'
 class Decorator < Nameable
   def initialize(nameable)
     @nameable = nameable
+    super()
   end
 
   def correct_name
