@@ -8,7 +8,7 @@ class Decorator < Nameable
   def correct_name
     @nameable.correct_name
   end
-end 
+end
 
 class CapitalizeDecorator < Decorator
   def correct_name
@@ -22,4 +22,3 @@ class TrimmerDecorator < Decorator
     name.length > 10 ? name[0..9] : name
   end
 end
-

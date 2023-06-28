@@ -1,6 +1,6 @@
 require_relative 'nameable'
 
-class Person < Nameable 
+class Person < Nameable
   def initialize(_id, age, name = 'Unknown', parent_permission: true)
     @id = generate_id
     @name = name
