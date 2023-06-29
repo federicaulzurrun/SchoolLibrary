@@ -5,7 +5,6 @@ class Student < Person
 
   def initialize(id, age, classroom = nil, name = 'Unknown', parent_permission: true)
     @classroom = classroom
-    add_student_classroom if clasroom
     super(id, age, name, parent_permission)
   end
 
