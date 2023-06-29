@@ -12,8 +12,3 @@ class Book
     rental.book = self
   end
 end
-
-# Create a book
-book = Book.new('Book Title', 'Author Name')
-puts book.title
-puts book.author

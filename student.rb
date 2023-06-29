@@ -18,13 +18,3 @@ class Student < Person
     clasroom.add_student(self) unless classroom.students.include?(self)
   end
 end
-
-# Create a student
-student = Student.new(1, 18, classroom, 'John Doe')
-puts student.name
-puts student.classroom.label
-
-# Add another student to the same classroom
-student2 = Student.new(2, 17, classroom, 'Jane Smith')
-puts student2.name
-puts student2.classroom.label
