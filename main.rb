@@ -19,25 +19,25 @@ class Main
     puts '7. Quit'
     puts '---------------------------'
 
-    choice = gets.chomp.to_i
+    option = gets.chomp.to_i
 
-    case choice
+    case option
     when 1
-      list_all_books
+      @app.list_all_books
     when 2
-      list_all_people
+      @app.list_people
     when 3
-      create_person
+      @app.create_person
     when 4
-      create_book
+      @app.create_book
     when 5
-      create_rental
+      @app.create_rental
     when 6
-      list_rentals_for_person
+      @app.list_rentals_for_person
     when 7
-      quit_program
+      @app.end_app
     else
-      puts 'Invalid choice. Please try again.'
+      puts 'Invalid option'
       display_menu
     end
   end
