@@ -111,16 +111,16 @@ class App
   def list_rentals_for_person
     puts 'Enter the person ID:'
     person_id = gets.chomp.to_i
-  
+
     person = @people.find { |p| p.id == person_id }
-  
+
     if person.nil?
       puts 'Invalid person ID.'
       return
     end
-  
-    rentals = @rentals.select { |r| r.person.id == person_id }  # Updated to use person's ID
-  
+
+    rentals = @rentals.select { |r| r.person.id == person_id }
+
     puts "Rentals for #{person.name}:"
     rentals.each do |rental|
       puts "#{rental.book.title} by #{rental.book.author} - #{rental.date}"
