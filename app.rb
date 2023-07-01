@@ -109,22 +109,18 @@ class App
   end
 
   def list_rentals_for_person
-    puts 'Select a person from the following list:'
-    @people.each_with_index do |person, index|
-      puts "Number: [#{index}] | Name: #{person.name} - ID: #{person.id}"
-    end
-
-    person_index = gets.chomp.to_i
-
-    if person_index.negative? || person_index >= @people.length
-      puts 'Invalid person number.'
+    puts 'Enter the person ID:'
+    person_id = gets.chomp.to_i
+  
+    person = @people.find { |p| p.id == person_id }
+  
+    if person.nil?
+      puts 'Invalid person ID.'
       return
     end
-
-    person = @people[person_index]
-
-    rentals = @rentals.select { |r| r.person == person }
-
+  
+    rentals = @rentals.select { |r| r.person.id == person_id }  # Updated to use person's ID
+  
     puts "Rentals for #{person.name}:"
     rentals.each do |rental|
       puts "#{rental.book.title} by #{rental.book.author} - #{rental.date}"
