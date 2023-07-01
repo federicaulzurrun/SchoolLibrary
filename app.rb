@@ -103,7 +103,7 @@ class App
     print 'Date: '
     rental_date = gets.chomp
     rental = Rental.new(rental_date, @books[book_selected], @people[person_selected])
-    @rentals << rental
+    rentals << rental
     puts 'Your selected book has been rented'
     @main_call.display_menu
   end
@@ -119,7 +119,7 @@ class App
       return
     end
 
-    rentals = @rentals.select { |r| r.person.id == person_id }
+    rental = @rentals.select { |r| r.person.id == person_id }
 
     puts "Rentals for #{person.name}:"
     rentals.each do |rental|
