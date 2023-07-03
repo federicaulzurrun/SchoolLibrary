@@ -131,5 +131,6 @@ class App
 
   def end_app
     puts 'Closing the app...'
+    exit(7)
   end
 end
