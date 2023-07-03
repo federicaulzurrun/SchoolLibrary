@@ -42,9 +42,9 @@ class Main
     end
   end
 
-  def main
+  def start
     display_menu
   end
 end
 
-Main.new.main
+Main.new.start
