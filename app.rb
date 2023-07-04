@@ -10,6 +10,7 @@ class App
     @people = []
     @books = []
     @rentals = []
+    load_data_from_json
   end
 
   def list_all_books
@@ -154,4 +155,26 @@ class App
   def save_rental_to_json
     File.write('rentals.json', JSON.pretty_generate(@rentals.map(&:to_hash)))
   end
+
+  def load_data_from_json
+    load_people_from_json
+    # load_books_from_json
+    # load_rentals_from_json
+  end
+
+  def load_people_from_json
+    if File.exist?('person.json')
+      people_data = JSON.parse(File.read('person.json'))
+      people_data.each do |person_data|
+        if person_data['type'] == 'student'
+          @people << Student.new(person_data['age'], person_data['name'], parent_permission: person_data['parent_permission'])
+        elsif person_data['type'] == 'teacher'
+          @people << Teacher.new(person_data['age'], person_data['specialization'], person_data['name'], parent_permission: person_data['parent_permission'])
+        end
+      end
+    end
+  end
+
+
+
 end

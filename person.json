@@ -1,9 +1,9 @@
 [
   {
-    "type": "teacher",
-    "id": 25,
-    "age": 22,
-    "name": "Fede",
-    "parent_permission": true
+    "type": "student",
+    "id": 188,
+    "age": 15,
+    "name": "Keren",
+    "parent_permission": false
   }
 ]
