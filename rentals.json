@@ -3,5 +3,15 @@
     "book": "Del cielo a la tierra",
     "person": "Keren",
     "date": "2023-01-01"
+  },
+  {
+    "book": "New Horizons",
+    "person": "Lorena",
+    "date": "2023-07-04"
+  },
+  {
+    "book": "Del cielo a la tierra",
+    "person": "Lorena",
+    "date": "2023-01-01"
   }
 ]
