@@ -158,7 +158,7 @@ class App
 
   def load_data_from_json
     load_people_from_json
-    # load_books_from_json
+    load_books_from_json
     # load_rentals_from_json
   end
 
@@ -171,6 +171,15 @@ class App
         elsif person_data['type'] == 'teacher'
           @people << Teacher.new(person_data['age'], person_data['specialization'], person_data['name'], parent_permission: person_data['parent_permission'])
         end
+      end
+    end
+  end
+
+  def load_books_from_json
+    if File.exist?('book.json')
+      book_data = JSON.parse(File.read('book.json'))
+      book_data.each do |book_data|
+        @books << Book.new(book_data['title'], book_data['author'])
       end
     end
   end
