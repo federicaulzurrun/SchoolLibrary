@@ -12,4 +12,11 @@ class Book
     @rentals << rental
     rental
   end
+
+  def to_hash(_options = {})
+    {
+      title: @title,
+      author: @author
+    }
+  end
 end

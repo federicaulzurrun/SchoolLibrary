@@ -2,13 +2,80 @@ require './student'
 require './teacher'
 require './book'
 require './rental'
+require 'json'
+
+module DataManagement
+  def save_data_to_json
+    save_person_to_json
+    save_book_to_json
+    save_rental_to_json
+  end
+
+  private
+
+  def save_person_to_json
+    File.write('person.json', JSON.pretty_generate(@people.map(&:to_hash)))
+  end
+
+  def save_book_to_json
+    File.write('book.json', JSON.pretty_generate(@books.map(&:to_hash)))
+  end
+
+  def save_rental_to_json
+    File.write('rentals.json', JSON.pretty_generate(@rentals.map(&:to_hash)))
+  end
+
+  def load_data_from_json
+    load_people_from_json
+    load_books_from_json
+    load_rentals_from_json
+  end
+
+  def load_people_from_json
+    return unless File.exist?('person.json')
+
+    people_data = JSON.parse(File.read('person.json'))
+    people_data.each do |person_data|
+      if person_data['type'] == 'student'
+        @people << Student.new(person_data['age'], person_data['name'],
+                               parent_permission: person_data['parent_permission'])
+      elsif person_data['type'] == 'teacher'
+        @people << Teacher.new(person_data['age'], person_data['specialization'], person_data['name'],
+                               parent_permission: person_data['parent_permission'])
+      end
+    end
+  end
+
+  def load_books_from_json
+    return unless File.exist?('book.json')
+
+    book_data = JSON.parse(File.read('book.json'))
+    book_data.each do |book|
+      @books << Book.new(book['title'], book['author'])
+    end
+  end
+
+  def load_rentals_from_json
+    return unless File.exist?('rentals.json')
+
+    rentals_data = JSON.parse(File.read('rentals.json'))
+    rentals_data.each do |rental_data|
+      book = @books.find { |b| b.title == rental_data['book'] }
+      person = @people.find { |p| p.name == rental_data['person'] }
+      @rentals << Rental.new(rental_data['date'], book, person)
+    end
+  end
+end
 
 class App
+  include DataManagement
+
   def initialize(main_call)
     @main_call = main_call
     @people = []
     @books = []
     @rentals = []
+    load_data_from_json
   end
 
   def list_all_books
