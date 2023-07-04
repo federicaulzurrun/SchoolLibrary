@@ -159,7 +159,7 @@ class App
   def load_data_from_json
     load_people_from_json
     load_books_from_json
-    # load_rentals_from_json
+    load_rentals_from_json
   end
 
   def load_people_from_json
@@ -180,6 +180,17 @@ class App
       book_data = JSON.parse(File.read('book.json'))
       book_data.each do |book_data|
         @books << Book.new(book_data['title'], book_data['author'])
+      end
+    end
+  end
+
+  def load_rentals_from_json
+    if File.exist?('rentals.json')
+      rentals_data = JSON.parse(File.read('rentals.json'))
+      rentals_data.each do |rental_data|
+        book = @books.find { |b| b.title == rental_data['book'] }
+        person = @people.find { |p| p.name == rental_data['person'] }
+        @rentals << Rental.new(rental_data['date'], book, person)
       end
     end
   end
