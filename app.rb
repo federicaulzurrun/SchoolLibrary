@@ -2,6 +2,7 @@ require './student'
 require './teacher'
 require './book'
 require './rental'
+require 'json'
 
 class App
   def initialize(main_call)
@@ -132,5 +133,25 @@ class App
   def end_app
     puts 'Closing the app...'
     exit(7)
+  end
+
+  def save_data_to_json
+    save_person_to_json
+    save_book_to_json
+    save_rental_to_json
+  end
+
+  private
+
+  def save_person_to_json
+    File.write('person.json', JSON.pretty_generate(@people.map(&:to_hash)))
+  end
+
+  def save_book_to_json
+    File.write('book.json', JSON.pretty_generate(@books.map(&:to_hash)))
+  end
+
+  def save_rental_to_json
+    File.write('rentals.json', JSON.pretty_generate(@rentals.map(&:to_hash)))
   end
 end

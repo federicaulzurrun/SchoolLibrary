@@ -26,12 +26,15 @@ class Main
     when Menu::LIST_RENTALS_FOR_PERSON
       @app.list_rentals_for_person
     when Menu::QUIT
+      @app.save_data_to_json
       @app.end_app
     else
       puts 'Invalid option'
     end
 
-    @menu.display_menu unless option == Menu::QUIT
+    return unless option != Menu::QUIT
+
+    @menu.display_menu
   end
 
   def display_menu
