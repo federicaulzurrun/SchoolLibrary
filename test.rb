@@ -1,12 +1,11 @@
 require 'rspec'
+require 'date'
 require_relative 'book'
 require_relative 'person'
 require_relative 'rental'
 require_relative 'decorator'
 require_relative 'classroom'
 require_relative 'student'
-require 'date'
-
 
 RSpec.describe Rental do
   let(:book) { Book.new('Title', 'Author') }
@@ -38,12 +37,12 @@ RSpec.describe Rental do
 end
 
 RSpec.describe Book do
-  describe "#rent_book" do
-    let(:person) { Person.new("John Doe") }
+  describe '#rent_book' do
+    let(:person) { Person.new('John Doe') }
     let(:date) { Date.today }
-    let(:book) { Book.new("Title", "Author") }
+    let(:book) { Book.new('Title', 'Author') }
 
-    it "creates a new rental and adds it to the rentals array" do
+    it 'creates a new rental and adds it to the rentals array' do
       rental = book.rent_book(person, date)
       expect(rental).to be_an_instance_of(Rental)
       expect(book.rentals).to include(rental)
@@ -51,13 +50,13 @@ RSpec.describe Book do
     end
   end
 
-  describe "#to_hash" do
-    let(:book) { Book.new("Title", "Author") }
+  describe '#to_hash' do
+    let(:book) { Book.new('Title', 'Author') }
 
-    it "returns a hash representation of the book" do
+    it 'returns a hash representation of the book' do
       hash = book.to_hash
       expect(hash).to be_a(Hash)
-      expect(hash).to eq({ title: "Title", author: "Author" })
+      expect(hash).to eq({ title: 'Title', author: 'Author' })
     end
   end
 end
